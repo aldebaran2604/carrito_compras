@@ -1,0 +1,27 @@
+<p>
+  <strong>Nombre:</strong>
+  <%= @user_profile.nombre %>
+</p>
+
+<p>
+  <strong>Apellido paterno:</strong>
+  <%= @user_profile.apellido_paterno %>
+</p>
+
+<p>
+  <strong>Apellido materno:</strong>
+  <%= @user_profile.apellido_materno %>
+</p>
+
+<p>
+  <strong>Fecha nacimiento:</strong>
+  <%= @user_profile.fecha_nacimiento %>
+</p>
+
+<p>
+  <strong>Domicilio:</strong>
+  <%= @user_profile.domicilio %>
+</p>
+
+<%= link_to 'Edit', edit_user_profile_path(@user_profile) %> |
+<%= link_to 'Back', user_profiles_path %>

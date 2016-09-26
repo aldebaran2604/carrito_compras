@@ -1,0 +1,32 @@
+<%= form_for(@category) do |f| %>
+  <% if @category.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@category.errors.count, "error") %> al guardar la categoria:</h2>
+
+      <ul class="list-group">
+      <% @category.errors.full_messages.each do |message| %>
+        <li class="list-group-item list-group-item-danger"><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :nombre %><br>
+    <%= f.text_field :nombre, :class => "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :descripcion %><br>
+    <%= f.text_area :descripcion, :class => "form-control" %>
+  </div>
+  
+  <!--<div class="field">
+    <%#= label_tag :subcategories, "Sub categorias" %><br>
+    <%#= select_tag :subcategories,  options_from_collection_for_select(@subcategories, "id", "nombre", @subselected), :name => "subcategories[]", :multiple => "multiple" %>
+  </div>-->
+
+  <div class="actions">
+    <%= f.submit "Guardar", :class => "btn btn-primary"  %>
+  </div>
+<% end %>

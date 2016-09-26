@@ -1,0 +1,53 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <%= link_to "Inicio", root_path, class: "navbar-brand"   %>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <% if current_user %>
+        <ul class="nav navbar-nav">
+          <% if can? :index, Item %>
+            <li><%= link_to "Artículos", items_path %></li>
+          <% end %>
+          <% if can? :index, Category %>
+            <li><%= link_to "Categorias", categories_path %></li>
+          <% end %>
+          <% if can? :index, SubCategory %>
+            <li><%= link_to "Sub Categorias", sub_categories_path %></li>
+          <% end %>
+          <% if can? :index, Role %>
+            <li><%= link_to "Roles", roles_path %></li>
+          <% end %>
+          <% if can? :index, Buy %>
+            <li><%= link_to "Compras", buys_path, :onclick => "cargarCarrito();" %></li>
+          <% end %>
+            <% if can? :registro_compras, Buy %>
+            <li><%= link_to "Registro Compras", :controller => "buys", :action => "registro_compras", :user_id => current_user.id %></li>
+          <% end %>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <% if @userprofilemenu.nil? %>
+            <li><%= link_to current_user.email, new_user_profile_path %></li>
+          <% else %>
+            <li><%= link_to current_user.email, edit_user_profile_path(@userprofilemenu) %></li>
+          <% end %>
+          <li><%= link_to "Salir", destroy_user_session_path, method: :delete %></li>
+        </ul>
+      <% else %>
+        <ul class="nav navbar-nav navbar-right">
+          <li><%= link_to "Ingresar", new_user_session_path %></li>
+          <li><%= link_to "Registrarse", new_user_registration_path %></li>
+        </ul>
+      <% end %>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>

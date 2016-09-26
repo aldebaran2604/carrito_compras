@@ -1,0 +1,22 @@
+<table id="tablaregistroCompras" class="display table table-bordered">
+  <thead class="bg-primary">
+    <th>Artículo</th>
+    <th>Precio</th>
+  </thead>
+  <tbody>
+    <% total = 0 %>
+    <% @buys.each do |compra| %>
+    <tr>
+      <td><%= compra.item_nombre %></td>
+      <td>$<%= compra.item_precio %></td>
+    </tr>
+    <% total = total+compra.item_precio %>
+    <% end %>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td></td>
+      <td>Total $<%= total %></td>
+    </tr>
+  </tfoot>
+</table>

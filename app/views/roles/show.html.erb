@@ -1,0 +1,9 @@
+<ul class="list-group">
+    <li class="list-group-item">
+      <strong>Nombre:</strong><%= @role.nombre %>
+    </li>
+</ul>
+
+<%= link_to 'Editar', edit_role_path(@role), :class => "btn btn-link" %>
+|
+<%= link_to 'Regresar', roles_path, :class => "btn btn-link" %>

@@ -1,0 +1,11 @@
+<ul class="list-group">
+    <li class="list-group-item">
+      <strong>Nombre:</strong><%= @sub_category.nombre %>
+    </li>
+    <li class="list-group-item">
+      <strong>Descripcion:</strong><%= @sub_category.descripcion %>
+    </li>
+</ul>
+
+<%= link_to 'Editar', edit_sub_category_path(@sub_category), :class => "btn btn-link" %> |
+<%= link_to 'Regresar', sub_categories_path, :class => "btn btn-link" %>

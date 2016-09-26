@@ -1,0 +1,8 @@
+<h1>¡Bienvenido!</h1>
+<% if current_user.nil? %>
+<script>
+  $(document).on("ready page:load", function(){
+    localStorage.carrito = '{}';
+  });
+</script>
+<% end %>

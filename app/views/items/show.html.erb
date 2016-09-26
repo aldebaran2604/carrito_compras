@@ -1,0 +1,26 @@
+<ul class="list-group">
+    <li class="list-group-item">
+      <strong>Nombre:</strong><%= @item.nombre %>
+    </li>
+    <li class="list-group-item">
+      <strong>Cantidad:</strong><%= @item.cantidad %>
+    </li>
+    <li class="list-group-item">
+      <strong>Precio:</strong><%= @item.precio %>
+    </li>
+    <li class="list-group-item">
+      <strong>Categoria:</strong>
+      <% if @item.category.nil?  %>
+        Sin categoria
+      <% else %>
+        <%= @item.category.nombre %>
+      <% end %>
+    </li>
+    <li class="list-group-item">
+      <%= image_tag @item.cover.url("thumb") %>
+    </li>
+</ul>
+
+<%= link_to 'Editar', edit_item_path(@item), :class => "btn btn-link" %>
+|
+<%= link_to 'Regresar', items_path, :class => "btn btn-link" %>

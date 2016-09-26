@@ -1,0 +1,42 @@
+<%= form_for(@item) do |f| %>
+  <% if @item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@item.errors.count, "error") %> al guardar el artículo:</h2>
+
+      <ul class="list-group">
+      <% @item.errors.full_messages.each do |message| %>
+        <li class="list-group-item list-group-item-danger"><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :nombre %><br>
+    <%= f.text_field :nombre, :class => "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :cantidad %><br>
+    <%= f.number_field :cantidad, :class => "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :precio %><br>
+    <%= f.text_field :precio, :class => "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :cover, "Archivo de imagen" %>
+    <%= f.file_field :cover, :class => "filestyle" %>
+  </div>
+
+  <div class="field">
+    <%= label_tag :category_id, "Categorias" %><br>
+    <%= select_tag :category_id,  options_from_collection_for_select(@categories, "id", "nombre", @categoryselected), :include_blank => "Elige una categoria" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Guardar", :class => "btn btn-primary" %>
+  </div>
+<% end %>

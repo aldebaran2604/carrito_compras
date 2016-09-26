@@ -1,0 +1,27 @@
+<h1>Lista de artículos</h1>
+
+<table id="indexarticulos" class="display table table-bordered">
+  <thead class="bg-primary">
+    <tr>
+      <th>Nombre</th>
+      <th>Cantidad</th>
+      <th>Precio</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @items.each do |item| %>
+      <tr>
+        <td><%= item.nombre %></td>
+        <td><%= item.cantidad %></td>
+        <td><%= item.precio %></td>
+        <td><%= link_to 'Mostrar', item, :class => "btn btn-link" %>
+        <%= link_to 'Editar', edit_item_path(item), :class => "btn btn-link" %>
+        <%= link_to 'Eliminar', item, method: :delete, data: { confirm: 'Estas seguro de eliminarlo?' }, :class => "btn btn-link" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+
+<%= link_to 'Nuevo', new_item_path, :class => "btn btn-link" %>

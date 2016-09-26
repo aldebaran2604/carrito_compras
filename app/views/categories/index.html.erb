@@ -1,0 +1,27 @@
+<h1>Lista de categorias</h1>
+
+<table id="indexcategorias" class="display table table-bordered">
+  <thead class="bg-primary">
+    <tr>
+      <th>Nombre</th>
+      <th>Descripcion</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @categories.each do |category| %>
+      <tr>
+        <td><%= category.nombre %></td>
+        <td><%= category.descripcion %></td>
+        <td><%= link_to 'Mostrar', category, :class => "btn btn-link" %>
+        <%= link_to 'Editar', edit_category_path(category), :class => "btn btn-link" %>
+        <%= link_to 'Eliminar', category, method: :delete, data: { confirm: 'Estas seguro de eliminarlo?' }, :class => "btn btn-link" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Nuevo', new_category_path, :class => "btn btn-link" %>

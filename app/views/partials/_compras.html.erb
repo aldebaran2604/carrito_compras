@@ -1,0 +1,85 @@
+<div class="row">
+  <div class="col-xs-6 col-lg-6 col-sm-6 col-md-6">
+    <div class=" panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">Menu categorias</h3>
+      </div>
+      <div class="panel-body" style=" max-height: 400px; overflow-y: auto; overflow-x: auto;">
+        <ul class="nav navbar-default nav-pills nav-stacked">
+          <% if !@categories.nil? %>
+            <% @categories.each do |category| %>
+              <li>
+                <%= link_to category.nombre, :controller => "buys", :action => "categories", :category_id => category.id %>
+              </li>
+            <% end %>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class=" col-xs-6 col-lg-6 col-sm-6 col-md-6">
+    <div class=" panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">Articulos en el carrito</h3>
+      </div>
+      <div class="panel-body" style=" max-height: 300px; overflow-y: auto; overflow-x: auto;">
+        <table class="display table table-bordered">
+          <thead class="bg-primary">
+            <tr>
+              <th>#</th>
+              <th>Nombre</th>
+              <th>Precio</th>
+              <th>Cancelar</th>
+            </tr>
+          </thead>
+          <tbody id="tablaCarrito">
+            
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="2"></td>
+              <td id="total">Total: $0</td>
+              <td><a class="btn btn-success" onclick="generarFormulario();" href="javascript:void(0);">Realizar compra</a></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class=" col-xs-12 col-lg-12 col-sm-12 col-md-12">
+    <div class=" panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">Artículos</h3>
+      </div>
+      <div class="panel-body">
+        <% if !@items.nil? %>
+          <div class="row">
+            <% contador = 0 %>
+            <% @items.each_with_index do |item, index| %>
+              <% if item.cantidad != 0  %>
+              <div class="col-sm-6 col-md-4">
+                <div class="thumbnail">
+                  <%= image_tag item.cover.url("thumb")  %>
+                  <div class="caption">
+                    <h3><%= item.nombre %> $<%= item.precio %></h3>
+                    <p>
+                      <%= image_tag "carrito03.png", :class => "carrito_img", :onclick => "agragarArticulo(#{contador},#{item.id});", :data => { :json => item.to_json } %>
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <% contador = contador+1 %>
+              <% end %>
+            <% end %>
+          </div>
+        <% else %>
+          Sin Artículos
+        <% end %>
+          <form id="formulario" name='formTpv' method='post' action='https://www.sandbox.paypal.com/cgibin/webscr'>
+            <div id="contenedorArticulos">
+            </div>
+          </form>
+      </div>
+    </div>
+  </div>
+</div>
